@@ -1,4 +1,4 @@
--- Active: 1696434862048@@127.0.0.1@3306
+-- Active: 1696585962050@@127.0.0.1@3306
 -- Inserindo dados na tabela Equipe
 INSERT INTO Equipe (equipe_id, nome) VALUES
 (1, 'Flamengo'),

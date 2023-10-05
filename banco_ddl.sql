@@ -1,4 +1,4 @@
--- Active: 1696434862048@@127.0.0.1@3306
+-- Active: 1696585962050@@127.0.0.1@3306
 CREATE TABLE IF NOT EXISTS Atleta (
     carteira_atleta VARCHAR PRIMARY KEY NOT NULL,
     nome VARCHAR(255) NOT NULL,
@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS Participacao (
     evento_fk VARCHAR,
     classificacao VARCHAR(255),
     CONSTRAINT FK_Participacao_1 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id),
-    CONSTRAINT FK_Participacao_2 FOREIGN KEY (equipe_fk) REFERENCES Equipe (equipe_id)
+    CONSTRAINT FK_Participacao_2 FOREIGN KEY (equipe_fk) REFERENCES Equipe (equipe_id),
+    CONSTRAINT PK_Participacao PRIMARY KEY (equipe_fk, evento_fk)
 );
 
 CREATE TABLE IF NOT EXISTS EventoEsportivo (
@@ -40,7 +41,8 @@ CREATE TABLE IF NOT EXISTS Patrocinio (
     patrocinador_fk VARCHAR,
     descricao TEXT,
     CONSTRAINT FK_Patrocinio_1 FOREIGN KEY (patrocinador_fk) REFERENCES Patrocinador (CNPJ),
-    CONSTRAINT FK_Patrocinio_2 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id)
+    CONSTRAINT FK_Patrocinio_2 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id),
+    CONSTRAINT PK_Patrocinio PRIMARY KEY (evento_fk, patrocinador_fk)
 );
 
 CREATE TABLE IF NOT EXISTS Colaborador (
@@ -53,7 +55,8 @@ CREATE TABLE IF NOT EXISTS RegistroColaboracao (
     evento_fk VARCHAR,
     colaborador_fk VARCHAR,
     CONSTRAINT FK_RegistroColaboracao_1 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id),
-    CONSTRAINT FK_RegistroColaboracao_2 FOREIGN KEY (colaborador_fk) REFERENCES Colaborador (CPF)
+    CONSTRAINT FK_RegistroColaboracao_2 FOREIGN KEY (colaborador_fk) REFERENCES Colaborador (CPF),
+    CONSTRAINT PK_Registro PRIMARY KEY (evento_fk, colaborador_fk)
 );
 
 CREATE TABLE IF NOT EXISTS Ingresso (
@@ -63,7 +66,8 @@ CREATE TABLE IF NOT EXISTS Ingresso (
     espectador_fk VARCHAR,
     evento_fk VARCHAR,
     CONSTRAINT FK_Ingresso_2 FOREIGN KEY (espectador_fk) REFERENCES Espectador (CPF),
-    CONSTRAINT FK_Ingresso_3 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id)
+    CONSTRAINT FK_Ingresso_3 FOREIGN KEY (evento_fk) REFERENCES EventoEsportivo (evento_id),
+    CONSTRAINT Unique_Ingresso UNIQUE (espectador_fk, evento_fk)
 );
 
 CREATE TABLE IF NOT EXISTS Espectador (

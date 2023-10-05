@@ -1,5 +1,18 @@
 # projeto-facul-banco
 
+## Explicação
+
+O projeto é um pequeno sistema de eventos esportivos.
+Um atleta só pode participar de uma única equipe.
+
+Uma equipe pode participar de um de de vários eventos esportivos, mas não pode estar registrado mais de uma vez no mesmo evento esportivo.
+
+Um espectador só pode comprar um ingresso para o mesmo evento esportivo, mas pode comprar ingressos para outros eventos esportivos.
+
+Um colaborador pode desempenhar função em diversos eventos esportivos, limitado pela regra de negócio da empresa que utilizaria.
+
+Um patrocinador pode patrocinar vários eventos esportivos.
+
 ## Normalização
 O modelo ER foi pensando com boas práticas de normalização, logo, não foram necessário normalizar para a 1FN, 2FN e 3FN.
 
